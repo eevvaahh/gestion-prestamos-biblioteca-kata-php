@@ -23,4 +23,10 @@ class GestionPrestamosBibliotecaKataTest extends TestCase
         $this->assertEmpty($nuevoLibroVacio);
     }
 
+    public function testPrestarUnNuevoLibro(): void{
+        $insertarUnNuevoLibro = $this->gestionPrestamosBibliotecaKata->gestionarLibrosEnBiblioteca("prestar dune");
+        $insertarUnNuevoLibroResultado = "dune x1";
+        $this->assertEmpty($insertarUnNuevoLibro,$insertarUnNuevoLibroResultado);
+    }
+
 }
