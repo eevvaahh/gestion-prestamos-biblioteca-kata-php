@@ -43,7 +43,9 @@ class GestionPrestamosBibliotecaKata
         if(!empty($this->listaLibros)){
             $resultadoLibros = [];
             foreach($this->listaLibros as $librosEnBiblioteca => $cantidadTotalLibrosEnBiblioteca){
-                $resultadoLibros[] = $librosEnBiblioteca . " x" . $cantidadTotalLibrosEnBiblioteca;
+                if($cantidadTotalLibrosEnBiblioteca > 0){
+                    $resultadoLibros[] = $librosEnBiblioteca . " x" . $cantidadTotalLibrosEnBiblioteca;
+                }
             }
             $resultadoBiliotecaEnFormatoString = implode(", ", $resultadoLibros);
             return $resultadoBiliotecaEnFormatoString;
