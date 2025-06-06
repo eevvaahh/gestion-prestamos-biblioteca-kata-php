@@ -10,7 +10,6 @@ class GestionPrestamosBibliotecaKata
         $accionYLibro = strtolower($accionYLibro);
         $accionYLibroSeparados = explode(" ", $accionYLibro);
         $accion = $accionYLibroSeparados[0];
-        var_dump("La accion es: " . $accion);
         $libro = $accionYLibroSeparados[1];
         if(empty($this->listaLibros[$libro])){
             $this->listaLibros[$libro] = 0;
