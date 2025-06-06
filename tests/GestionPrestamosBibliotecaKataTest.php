@@ -87,4 +87,18 @@ class GestionPrestamosBibliotecaKataTest extends TestCase
 
         $this->assertEquals($limpiarBiblioteca,"");
     }
+
+    /**
+     * @test
+     */
+    public function testProbarEjemploDeFlujo(): void{
+        $this->gestionPrestamosBibliotecaKata->gestionarLibrosEnBiblioteca("prestar dune");
+        $this->gestionPrestamosBibliotecaKata->gestionarLibrosEnBiblioteca("prestar fundacion 2");
+        $this->gestionPrestamosBibliotecaKata->gestionarLibrosEnBiblioteca("prestar DUNE 2");
+        $this->gestionPrestamosBibliotecaKata->gestionarLibrosEnBiblioteca("devolver 1984");
+
+        $probar = $this->gestionPrestamosBibliotecaKata->gestionarLibrosEnBiblioteca("devolver Dune");
+
+        $this->assertEquals($probar, "dune x2, fundacion x2");
+    }
 }
