@@ -150,6 +150,4 @@ class GestionPrestamosBibliotecaKataTest extends TestCase
 
         $this->assertEquals($comandoIncompleto, "Es necesario incluir el libro a prestar");
     }
-
-
 }
