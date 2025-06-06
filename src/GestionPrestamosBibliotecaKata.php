@@ -32,6 +32,17 @@ class GestionPrestamosBibliotecaKata
             $resultadoBiliotecaEnFormatoString = implode(", ", $resultadoLibros);
             return $resultadoBiliotecaEnFormatoString;
         }
+        if($accion == "devolver"){
+            $cantidadTotalLibrosEnBiblioteca = $this->listaLibros[$libro];
+            $cantidadTotalLibrosEnBiblioteca = $cantidadTotalLibrosEnBiblioteca - 1;
+            $this->listaLibros[$libro] = $cantidadTotalLibrosEnBiblioteca;
+            $resultadoLibros = [];
+            foreach($this->listaLibros as $librosEnBiblioteca => $cantidadTotalLibrosEnBiblioteca){
+                $resultadoLibros[] = $librosEnBiblioteca . " x" . $cantidadTotalLibrosEnBiblioteca;
+            }
+            $resultadoBiliotecaEnFormatoString = implode(", ", $resultadoLibros);
+            return $resultadoBiliotecaEnFormatoString;
+        }
         return "";
     }
 
