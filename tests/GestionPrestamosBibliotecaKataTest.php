@@ -36,10 +36,10 @@ class GestionPrestamosBibliotecaKataTest extends TestCase
     /**
      * @test
      */
-    public function testPrestarDosNuevoLibro(): void{
-        $insertarDosNuevoLibro = $this->gestionPrestamosBibliotecaKata->gestionarLibrosEnBiblioteca("prestar dune 2");
+    public function testPrestarDosNuevosLibros(): void{
+        $insertarDosNuevosLibros = $this->gestionPrestamosBibliotecaKata->gestionarLibrosEnBiblioteca("prestar dune 2");
 
-        $this->assertEquals($insertarDosNuevoLibro,"dune x2");
+        $this->assertEquals($insertarDosNuevosLibros,"dune x2");
     }
 
     /**
@@ -100,5 +100,19 @@ class GestionPrestamosBibliotecaKataTest extends TestCase
         $probar = $this->gestionPrestamosBibliotecaKata->gestionarLibrosEnBiblioteca("devolver Dune");
 
         $this->assertEquals($probar, "dune x2, fundacion x2");
+    }
+
+    /**
+     * @test
+     */
+    public function testPrestarUnLibroDespuesDeLimpiarBiblioteca(): void{
+        $this->gestionPrestamosBibliotecaKata->gestionarLibrosEnBiblioteca("prestar dune 2");
+        $this->gestionPrestamosBibliotecaKata->gestionarLibrosEnBiblioteca("devolver dune");
+        $this->gestionPrestamosBibliotecaKata->gestionarLibrosEnBiblioteca("prestar fundacion 4");
+        $this->gestionPrestamosBibliotecaKata->gestionarLibrosEnBiblioteca("limpiar");
+
+        $prestarNuevoLibro = $this->gestionPrestamosBibliotecaKata->gestionarLibrosEnBiblioteca("prestar dune 2");
+
+        $this->assertEquals($prestarNuevoLibro, "dune x2");
     }
 }
