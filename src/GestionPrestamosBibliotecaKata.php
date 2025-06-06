@@ -9,7 +9,9 @@ class GestionPrestamosBibliotecaKata
         $accionYLibro = strtolower($accionYLibro);
         $accionYLibroSeparados = explode(" ", $accionYLibro);
         $accion = $accionYLibroSeparados[0];
-        $libro = $accionYLibroSeparados[1];
+        if(isset($accionYLibroSeparados[1])){
+            $libro = $accionYLibroSeparados[1];
+        }
         if($accion == "prestar"){
             if(empty($this->listaLibros[$libro])){
                 $this->listaLibros[$libro] = 0;
@@ -24,12 +26,6 @@ class GestionPrestamosBibliotecaKata
                 $cantidadTotalLibrosEnBiblioteca = $cantidadTotalLibrosEnBiblioteca + $totalLibrosAInsertar;
             }
             $this->listaLibros[$libro] = $cantidadTotalLibrosEnBiblioteca;
-            $resultadoLibros = [];
-            foreach($this->listaLibros as $librosEnBiblioteca => $cantidadTotalLibrosEnBiblioteca){
-                $resultadoLibros[] = $librosEnBiblioteca . " x" . $cantidadTotalLibrosEnBiblioteca;
-            }
-            $resultadoBiliotecaEnFormatoString = implode(", ", $resultadoLibros);
-            return $resultadoBiliotecaEnFormatoString;
         }
         else if($accion == "devolver"){
             if(!isset($this->listaLibros[$libro])){
@@ -38,6 +34,13 @@ class GestionPrestamosBibliotecaKata
             $cantidadTotalLibrosEnBiblioteca = $this->listaLibros[$libro];
             $cantidadTotalLibrosEnBiblioteca = $cantidadTotalLibrosEnBiblioteca - 1;
             $this->listaLibros[$libro] = $cantidadTotalLibrosEnBiblioteca;
+        }
+        else if($accion == "limpiar"){
+            unset($this->listaLibros);
+            $this->listaLibros = [];
+        }
+
+        if(!empty($this->listaLibros)){
             $resultadoLibros = [];
             foreach($this->listaLibros as $librosEnBiblioteca => $cantidadTotalLibrosEnBiblioteca){
                 $resultadoLibros[] = $librosEnBiblioteca . " x" . $cantidadTotalLibrosEnBiblioteca;
@@ -45,15 +48,9 @@ class GestionPrestamosBibliotecaKata
             $resultadoBiliotecaEnFormatoString = implode(", ", $resultadoLibros);
             return $resultadoBiliotecaEnFormatoString;
         }
-        else if($accion == "limpiar"){
-            unset($this->listaLibros);
-            $this->listaLibros = [];
-            if(empty($this->listaLibros)){
-                return "";
-            }
+        else{
+            return "";
         }
-
-        return "";
     }
 
 }
