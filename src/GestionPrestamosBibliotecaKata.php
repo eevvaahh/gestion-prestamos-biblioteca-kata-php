@@ -31,7 +31,7 @@ class GestionPrestamosBibliotecaKata
             $resultadoBiliotecaEnFormatoString = implode(", ", $resultadoLibros);
             return $resultadoBiliotecaEnFormatoString;
         }
-        if($accion == "devolver"){
+        else if($accion == "devolver"){
             if(!isset($this->listaLibros[$libro])){
                 return "El libro indicado no esta en prestamo";
             }
@@ -45,8 +45,12 @@ class GestionPrestamosBibliotecaKata
             $resultadoBiliotecaEnFormatoString = implode(", ", $resultadoLibros);
             return $resultadoBiliotecaEnFormatoString;
         }
-        if($accion == "limpiar"){
-            return "";
+        else if($accion == "limpiar"){
+            unset($this->listaLibros);
+            $this->listaLibros = [];
+            if(empty($this->listaLibros)){
+                return "";
+            }
         }
 
         return "";
