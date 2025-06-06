@@ -17,40 +17,40 @@ class GestionPrestamosBibliotecaKataTest extends TestCase
     /**
      * @test
      */
-    public function testListProductsIsEmptyInTheStart(): void
+    public function testInsertarInstruccionVaciaDevuelveStringVacio(): void
     {
-        $nuevoLibroVacio = $this->gestionPrestamosBibliotecaKata->gestionarLibrosEnBiblioteca("");
+        $instruccionVacia = $this->gestionPrestamosBibliotecaKata->gestionarLibrosEnBiblioteca("");
 
-        $this->assertEmpty($nuevoLibroVacio);
+        $this->assertEmpty($instruccionVacia);
     }
 
     /**
      * @test
      */
     public function testPrestarUnNuevoLibro(): void{
-        $insertarUnNuevoLibro = $this->gestionPrestamosBibliotecaKata->gestionarLibrosEnBiblioteca("prestar dune");
+        $prestarUnNuevoLibro = $this->gestionPrestamosBibliotecaKata->gestionarLibrosEnBiblioteca("prestar dune");
 
-        $this->assertEquals($insertarUnNuevoLibro,"dune x1");
+        $this->assertEquals($prestarUnNuevoLibro,"dune x1");
     }
 
     /**
      * @test
      */
-    public function testPrestarDosNuevosLibros(): void{
-        $insertarDosNuevosLibros = $this->gestionPrestamosBibliotecaKata->gestionarLibrosEnBiblioteca("prestar dune 2");
+    public function testPrestarElMismoLibroDosVeces(): void{
+        $prestarDosVecesMismoLibro = $this->gestionPrestamosBibliotecaKata->gestionarLibrosEnBiblioteca("prestar dune 2");
 
-        $this->assertEquals($insertarDosNuevosLibros,"dune x2");
+        $this->assertEquals($prestarDosVecesMismoLibro,"dune x2");
     }
 
     /**
      * @test
      */
-    public function testPrestarUnNuevoLibroDeDosTipos(): void{
+    public function testPrestarUnNuevoLibroConDosTitulosDistintos(): void{
         $this->gestionPrestamosBibliotecaKata->gestionarLibrosEnBiblioteca("prestar dune");
 
-        $insertarUnNuevoLibroDeDosTipos = $this->gestionPrestamosBibliotecaKata->gestionarLibrosEnBiblioteca("prestar fundacion");
+        $prestarDosTitulosDistintos = $this->gestionPrestamosBibliotecaKata->gestionarLibrosEnBiblioteca("prestar fundacion");
 
-        $this->assertEquals($insertarUnNuevoLibroDeDosTipos, "dune x1, fundacion x1");
+        $this->assertEquals($prestarDosTitulosDistintos, "dune x1, fundacion x1");
     }
 
     /**
