@@ -140,4 +140,16 @@ class GestionPrestamosBibliotecaKataTest extends TestCase
         $this->assertEquals($comandoInvalido, "Introduce una opcion valida");
     }
 
+    /**
+     * @test
+     */
+    public function testIncluirUnComandoIncompleto(): void{
+        $this->gestionPrestamosBibliotecaKata->gestionarLibrosEnBiblioteca("prestar dune 2");
+
+        $comandoIncompleto = $this->gestionPrestamosBibliotecaKata->gestionarLibrosEnBiblioteca("prestar");
+
+        $this->assertEquals($comandoIncompleto, "Es necesario incluir el libro a prestar");
+    }
+
+
 }
