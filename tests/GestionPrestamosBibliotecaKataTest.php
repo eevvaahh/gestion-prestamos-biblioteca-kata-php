@@ -115,6 +115,7 @@ class GestionPrestamosBibliotecaKataTest extends TestCase
 
         $this->assertEquals($prestarNuevoLibro, "dune x2");
     }
+
     /**
      * @test
      */
@@ -127,4 +128,16 @@ class GestionPrestamosBibliotecaKataTest extends TestCase
 
         $this->assertEquals($devolverLibroNoPrestado, "");
     }
+
+    /**
+     * @test
+     */
+    public function testIncluirUnComandoInvalido(): void{
+        $this->gestionPrestamosBibliotecaKata->gestionarLibrosEnBiblioteca("prestar dune 2");
+
+        $comandoInvalido = $this->gestionPrestamosBibliotecaKata->gestionarLibrosEnBiblioteca("crear dune");
+
+        $this->assertEquals($comandoInvalido, "Introduce una opcion valida");
+    }
+
 }

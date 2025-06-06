@@ -39,6 +39,9 @@ class GestionPrestamosBibliotecaKata
             unset($this->listaLibros);
             $this->listaLibros = [];
         }
+        else if(($accion!= "prestar") && ($accion!= "devolver") && ($accion!= "limpiar")){
+            return "Introduce una opcion valida";
+        }
 
         if(!empty($this->listaLibros)){
             $resultadoLibros = [];
