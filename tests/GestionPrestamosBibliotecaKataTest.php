@@ -65,4 +65,15 @@ class GestionPrestamosBibliotecaKataTest extends TestCase
         $devolverUnLibroResultado = "El libro indicado no esta en prestamo";
         $this->assertEquals($devolverUnLibro,$devolverUnLibroResultado);
     }
+    /**
+     * @test
+     */
+    public function testLimpiarBiblioteca(): void{
+        $this->gestionPrestamosBibliotecaKata->gestionarLibrosEnBiblioteca("prestar dune 2");
+        $this->gestionPrestamosBibliotecaKata->gestionarLibrosEnBiblioteca("devolver dune");
+        $this->gestionPrestamosBibliotecaKata->gestionarLibrosEnBiblioteca("prestar fundacion 4");
+        $limpiarBiblioteca = $this->gestionPrestamosBibliotecaKata->gestionarLibrosEnBiblioteca("limpiar");
+        $limpiarBibliotecaResultado = "";
+        $this->assertEquals($limpiarBiblioteca,$limpiarBibliotecaResultado);
+    }
 }

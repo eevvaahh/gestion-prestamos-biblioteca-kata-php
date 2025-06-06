@@ -45,6 +45,9 @@ class GestionPrestamosBibliotecaKata
             $resultadoBiliotecaEnFormatoString = implode(", ", $resultadoLibros);
             return $resultadoBiliotecaEnFormatoString;
         }
+        if($accion == "limpiar"){
+            return "";
+        }
 
         return "";
     }
