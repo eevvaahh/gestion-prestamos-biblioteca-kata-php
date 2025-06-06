@@ -6,15 +6,14 @@ class GestionPrestamosBibliotecaKata
 {
     private array $listaLibros;
     public function gestionarLibrosEnBiblioteca(String $accionYLibro): string{
-        var_dump("Hola");
         $accionYLibro = strtolower($accionYLibro);
         $accionYLibroSeparados = explode(" ", $accionYLibro);
         $accion = $accionYLibroSeparados[0];
         $libro = $accionYLibroSeparados[1];
-        if(empty($this->listaLibros[$libro])){
-            $this->listaLibros[$libro] = 0;
-        }
         if($accion == "prestar"){
+            if(empty($this->listaLibros[$libro])){
+                $this->listaLibros[$libro] = 0;
+            }
             if(!isset($accionYLibroSeparados[2])) {
                 $cantidadTotalLibrosEnBiblioteca = $this->listaLibros[$libro];
                 $cantidadTotalLibrosEnBiblioteca = $cantidadTotalLibrosEnBiblioteca + 1;
@@ -33,6 +32,9 @@ class GestionPrestamosBibliotecaKata
             return $resultadoBiliotecaEnFormatoString;
         }
         if($accion == "devolver"){
+            if(!isset($this->listaLibros[$libro])){
+                return "El libro indicado no esta en prestamo";
+            }
             $cantidadTotalLibrosEnBiblioteca = $this->listaLibros[$libro];
             $cantidadTotalLibrosEnBiblioteca = $cantidadTotalLibrosEnBiblioteca - 1;
             $this->listaLibros[$libro] = $cantidadTotalLibrosEnBiblioteca;
@@ -43,6 +45,7 @@ class GestionPrestamosBibliotecaKata
             $resultadoBiliotecaEnFormatoString = implode(", ", $resultadoLibros);
             return $resultadoBiliotecaEnFormatoString;
         }
+
         return "";
     }
 
